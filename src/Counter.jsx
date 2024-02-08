@@ -6,6 +6,7 @@ import {
   increment,
 } from "./redux/features/counter/counterSlice"
 import { useEffect } from "react"
+import { useGetPokemonByNameQuery } from "./redux/services/pokemon"
 
 export function Counter() {
   const count = useSelector((state) => state.counter.value)
@@ -14,6 +15,8 @@ export function Counter() {
   const { singleUser } = useSelector((state) => state.counter)
   console.log(singleUser)
 
+  const { data: pokemon, error, isLoading } = useGetPokemonByNameQuery()
+  console.log(pokemon)
   async function fetchData() {
     dispatch(fetchUsers())
   }
